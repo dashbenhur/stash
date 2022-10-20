@@ -792,6 +792,7 @@ export const LightboxComponent: React.FC<IProps> = ({
                   onReset={onResetClick}
                   value={currentImage?.o_counter ?? 0}
                 />
+                <a href={`/image/${currentImage.id}/wallpaper`} target="_blank" className="btn btn-primary minimal">Wall</a>
               </div>
               <RatingStars
                 value={currentImage?.rating ?? undefined}

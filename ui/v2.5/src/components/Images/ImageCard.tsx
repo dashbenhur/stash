@@ -106,6 +106,16 @@ export const ImageCard: React.FC<IImageCardProps> = (
     }
   }
 
+  function maybeRenderWallpaper() {
+    return (
+      <div className="setWallpaper">
+        <a href={`/image/${props.image.id}/wallpaper`} target="_blank" className="btn btn-primary minimal" >
+          Wall
+        </a>
+      </div>
+    )
+  }
+
   function maybeRenderPopoverButtonGroup() {
     if (
       props.image.tags.length > 0 ||
@@ -123,6 +133,7 @@ export const ImageCard: React.FC<IImageCardProps> = (
             {maybeRenderOCounter()}
             {maybeRenderGallery()}
             {maybeRenderOrganized()}
+            {maybeRenderWallpaper()}
           </ButtonGroup>
         </>
       );
