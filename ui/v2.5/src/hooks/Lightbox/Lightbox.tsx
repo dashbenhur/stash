@@ -921,6 +921,7 @@ export const LightboxComponent: React.FC<IProps> = ({
                     onReset={onResetClick}
                     value={currentImage?.o_counter ?? 0}
                   />
+                  <a onClick={(event) => {setWallPaper(`/image/${currentImage.id}/wallpaper`)}} target="_blank" className="btn btn-primary minimal" >Wall</a>
                 </div>
                 <RatingSystem
                   value={currentImage?.rating100}
