@@ -104,6 +104,16 @@ const ImageCardPopovers = PatchComponent(
       }
     }
 
+  function maybeRenderWallpaper() {
+    return (
+      <div className="setWallpaper">
+        <a href={`/image/${props.image.id}/wallpaper`} target="_blank" className="btn btn-primary minimal" >
+          Wall
+        </a>
+      </div>
+    )
+  }
+
     if (
       props.image.tags.length > 0 ||
       props.image.performers.length > 0 ||
@@ -120,6 +130,7 @@ const ImageCardPopovers = PatchComponent(
             {maybeRenderOCounter()}
             {maybeRenderGallery()}
             {maybeRenderOrganized()}
+            {maybeRenderWallpaper()}
           </ButtonGroup>
         </>
       );
