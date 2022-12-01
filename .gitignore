@@ -63,4 +63,7 @@ node_modules
 /phasher
 dist
 .DS_Store
+
 /.local*
+*.backup
+
