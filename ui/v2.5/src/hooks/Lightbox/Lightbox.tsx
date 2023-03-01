@@ -151,6 +151,10 @@ export const LightboxComponent: React.FC<IProps> = ({
     setLightboxSettings({ scrollMode: v });
   }
 
+  function setWallPaper(url:string){
+    fetch(url).then(response => response.status);
+  }
+
   const configuredDelay = config?.interface.imageLightbox.slideshowDelay
     ? config.interface.imageLightbox.slideshowDelay * SECONDS_TO_MS
     : undefined;
@@ -807,7 +811,7 @@ export const LightboxComponent: React.FC<IProps> = ({
                   onReset={onResetClick}
                   value={currentImage?.o_counter ?? 0}
                 />
-                <a href={`/image/${currentImage.id}/wallpaper`} target="_blank" className="btn btn-primary minimal">Wall</a>
+                <a onClick={(event) => {setWallPaper(`/image/${currentImage.id}/wallpaper`)}} target="_blank" className="btn btn-primary minimal" >Wall</a>
               </div>
               <RatingSystem
                 value={currentImage?.rating100 ?? undefined}
