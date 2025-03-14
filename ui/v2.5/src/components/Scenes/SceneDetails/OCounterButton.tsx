@@ -9,6 +9,7 @@ import { useConfigurationContext } from "src/hooks/Config";
 
 export interface IOCounterButtonProps {
   value: number;
+  dataprops?: { [key: string]: string };
   onIncrement: () => Promise<void>;
   onDecrement: () => Promise<void>;
   onReset: () => Promise<void>;
@@ -48,6 +49,14 @@ export const OCounterButton: React.FC<IOCounterButtonProps> = (
 
   const renderButton = () => (
     <Button
+      id="OCounterButton"
+      {...Object.entries(props.dataprops ?? {}).reduce(
+        (acc, [key, value]) => ({
+          ...acc,
+          [`data-${key}`]: value
+        }),
+        {}
+      )}
       className="minimal pr-1"
       onClick={increment}
       variant="secondary"

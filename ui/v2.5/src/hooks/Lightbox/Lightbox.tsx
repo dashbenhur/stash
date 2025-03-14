@@ -956,12 +956,13 @@ export const LightboxComponent: React.FC<IProps> = ({
           <div className={CLASSNAME_FOOTER_LEFT}>
             {currentImage?.id !== undefined && (
               <>
-                <div id="OCounterButton" data-imgid={currentImage.id}>
+                <div>
                   <OCounterButton
                     onDecrement={onDecrementClick}
                     onIncrement={onIncrementClick}
                     onReset={onResetClick}
                     value={currentImage?.o_counter ?? 0}
+                    dataprops={{ imgid: currentImage.id }}
                   />
                   <a onClick={(event) => {setWallPaper(`/image/${currentImage.id}/wallpaper`)}} target="_blank" className="btn btn-primary minimal" >Wall</a>
                 </div>

@@ -362,6 +362,7 @@ const ImagePage: React.FC<IProps> = ({ image }) => {
                 onIncrement={onIncrementClick}
                 onDecrement={onDecrementClick}
                 onReset={onResetClick}
+                dataprops={{ imgid: image.id }}
               />
             </span>
             <span>

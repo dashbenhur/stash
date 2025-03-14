@@ -158,6 +158,7 @@ export const ListOperationButtons: React.FC<IListOperationButtonsProps> = ({
           return (
             <Button
               key={button.text}
+              id="editButton"
               variant={button.buttonVariant ?? "secondary"}
               onClick={button.onClick}
               title={button.text}
