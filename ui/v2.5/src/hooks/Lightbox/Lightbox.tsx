@@ -956,7 +956,7 @@ export const LightboxComponent: React.FC<IProps> = ({
           <div className={CLASSNAME_FOOTER_LEFT}>
             {currentImage?.id !== undefined && (
               <>
-                <div>
+                <div id="OCounterButton" data-imgid={currentImage.id}>
                   <OCounterButton
                     onDecrement={onDecrementClick}
                     onIncrement={onIncrementClick}
