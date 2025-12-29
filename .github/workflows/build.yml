@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - master
+      - 'wall-able-stash'
       - 'releases/**'
   pull_request:
   release:
