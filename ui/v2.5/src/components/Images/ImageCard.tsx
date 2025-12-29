@@ -111,7 +111,7 @@ const ImageCardPopovers = PatchComponent(
   function maybeRenderWallpaper() {
     return (
       <div className="setWallpaper">
-        <a  onClick={(event) => {setWallPaper(`/image/${props.image.id}/wallpaper`)}} target="_blank" className="btn btn-primary minimal" >
+        <a  onClick={() => {setWallPaper(`/image/${props.image.id}/wallpaper`)}} target="_blank" className="btn btn-primary minimal" >
           Wall
         </a>
       </div>

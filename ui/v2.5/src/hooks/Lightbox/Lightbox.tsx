@@ -964,7 +964,7 @@ export const LightboxComponent: React.FC<IProps> = ({
                     value={currentImage?.o_counter ?? 0}
                     dataprops={{ imgid: currentImage.id }}
                   />
-                  <a onClick={(event) => {setWallPaper(`/image/${currentImage.id}/wallpaper`)}} target="_blank" className="btn btn-primary minimal" >Wall</a>
+                  <a onClick={() => {setWallPaper(`/image/${currentImage.id}/wallpaper`)}} target="_blank" className="btn btn-primary minimal" >Wall</a>
                 </div>
                 <RatingSystem
                   value={currentImage?.rating100}
