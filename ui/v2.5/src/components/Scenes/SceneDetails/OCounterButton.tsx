@@ -53,7 +53,7 @@ export const OCounterButton: React.FC<IOCounterButtonProps> = (
       {...Object.entries(props.dataprops ?? {}).reduce(
         (acc, [key, value]) => ({
           ...acc,
-          [`data-${key}`]: value
+          [`data-${key}`]: value,
         }),
         {}
       )}
