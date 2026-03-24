@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"fmt"
+	"os/exec"
 	"strconv"
 
 	"github.com/stashapp/stash/internal/manager"
@@ -446,6 +447,32 @@ func (r *mutationResolver) ImageDecrementO(ctx context.Context, id string) (ret 
 	}
 
 	return ret, nil
+}
+
+func (r *mutationResolver) SetWallpaper(ctx context.Context, imageID string) (bool, error) {
+	id, err := strconv.Atoi(imageID)
+	if err != nil {
+		return false, fmt.Errorf("converting id: %w", err)
+	}
+
+	var i *models.Image
+	if err := r.withReadTxn(ctx, func(ctx context.Context) error {
+		i, err = r.repository.Image.Find(ctx, id)
+		return err
+	}); err != nil {
+		return false, err
+	}
+
+	if i == nil {
+		return false, fmt.Errorf("image with id %d not found", id)
+	}
+
+	exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-options", "'scaled'").Run() //nolint:errcheck
+	if err := exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-uri", "'file://"+i.Path+"'").Run(); err != nil {
+		return false, err
+	}
+
+	return true, nil
 }
 
 func (r *mutationResolver) ImageResetO(ctx context.Context, id string) (ret int, err error) {

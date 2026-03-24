@@ -1354,6 +1354,8 @@ export const mutateImageResetO = (id: string) =>
     update: updateImageResetO(id),
   });
 
+export const useSetWallpaper = () => GQL.useSetWallpaperMutation();
+
 export const mutateImageSetPrimaryFile = (id: string, fileID: string) =>
   client.mutate<GQL.ImageUpdateMutation>({
     mutation: GQL.ImageUpdateDocument,

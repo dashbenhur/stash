@@ -3,7 +3,6 @@ package api
 import (
 	"context"
 	"errors"
-	"fmt"
 	"io/fs"
 	"net/http"
 	"os/exec"
@@ -42,7 +41,6 @@ func (rs imageRoutes) Routes() chi.Router {
 		r.Get("/image", rs.Image)
 		r.Get("/thumbnail", rs.Thumbnail)
 		r.Get("/preview", rs.Preview)
-		r.Get("/wallpaper", rs.Wallpaper)
 	})
 
 	return r
@@ -132,24 +130,6 @@ func (rs imageRoutes) Image(w http.ResponseWriter, r *http.Request) {
 	rs.serveImage(w, r, i, useDefault)
 }
 
-func (rs imageRoutes) Wallpaper(w http.ResponseWriter, r *http.Request) {
-	i := r.Context().Value(imageKey).(*models.Image)
-	exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-options", "'scaled'")
-
-	cmd := exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-uri", "'file://"+i.Path+"'")
-	stdout, err := cmd.Output()
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-	// Print the output
-	fmt.Println(string(stdout))
-
-	// if image is in a zip file, we need to serve it specifically
-	const useDefault = false
-	rs.serveImage(w, r, i, useDefault)
-}
 
 func (rs imageRoutes) serveImage(w http.ResponseWriter, r *http.Request, i *models.Image, useDefault bool) {
 	if i.Files.Primary() != nil {

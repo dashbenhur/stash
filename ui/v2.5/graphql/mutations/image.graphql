@@ -55,3 +55,7 @@ mutation ImagesDestroy(
     }
   )
 }
+
+mutation SetWallpaper($image_id: ID!) {
+  setWallpaper(image_id: $image_id)
+}

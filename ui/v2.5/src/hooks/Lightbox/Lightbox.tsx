@@ -27,6 +27,7 @@ import {
   mutateImageDecrementO,
   mutateImageResetO,
   useImageUpdate,
+  useSetWallpaper,
 } from "src/core/StashService";
 import * as GQL from "src/core/generated-graphql";
 import { useInterfaceLocalForage } from "../LocalForage";
@@ -112,6 +113,7 @@ export const LightboxComponent: React.FC<IProps> = ({
   hide,
 }) => {
   const [updateImage] = useImageUpdate();
+  const [setWallpaper] = useSetWallpaper();
 
   // zero-based
   const [index, setIndex] = useState<number | null>(null);
@@ -184,11 +186,7 @@ export const LightboxComponent: React.FC<IProps> = ({
     setLightboxSettings({ scrollMode: v });
   }
 
-  function setWallPaper(url: string) {
-    fetch(url).then((response) => response.status);
-  }
-
-  const configuredDelay = config?.interface.imageLightbox.slideshowDelay
+const configuredDelay = config?.interface.imageLightbox.slideshowDelay
     ? config.interface.imageLightbox.slideshowDelay * SECONDS_TO_MS
     : undefined;
 
@@ -966,7 +964,9 @@ export const LightboxComponent: React.FC<IProps> = ({
                   />
                   <a
                     onClick={() => {
-                      setWallPaper(`/image/${currentImage.id}/wallpaper`);
+                      setWallpaper({
+                        variables: { image_id: currentImage.id },
+                      });
                     }}
                     target="_blank"
                     className="btn btn-primary minimal"

@@ -16,6 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { imageTitle } from "src/core/files";
 import { PatchComponent } from "src/patch";
+import { useSetWallpaper } from "src/core/StashService";
 import { TruncatedText } from "../Shared/TruncatedText";
 import { StudioOverlay } from "../Shared/GridCard/StudioOverlay";
 import { OCounterButton } from "../Shared/CountButton";
@@ -33,6 +34,8 @@ interface IImageCardProps {
 const ImageCardPopovers = PatchComponent(
   "ImageCard.Popovers",
   (props: IImageCardProps) => {
+  const [setWallpaper] = useSetWallpaper();
+
     function maybeRenderTagPopoverButton() {
       if (props.image.tags.length <= 0) return;
 
@@ -113,7 +116,7 @@ const ImageCardPopovers = PatchComponent(
       <div className="setWallpaper">
         <a
           onClick={() => {
-            setWallPaper(`/image/${props.image.id}/wallpaper`);
+            setWallpaper({ variables: { image_id: props.image.id } });
           }}
           target="_blank"
           className="btn btn-primary minimal"
