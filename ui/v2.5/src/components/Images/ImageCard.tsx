@@ -34,7 +34,7 @@ interface IImageCardProps {
 const ImageCardPopovers = PatchComponent(
   "ImageCard.Popovers",
   (props: IImageCardProps) => {
-  const [setWallpaper] = useSetWallpaper();
+    const [setWallpaper] = useSetWallpaper();
 
     function maybeRenderTagPopoverButton() {
       if (props.image.tags.length <= 0) return;
@@ -107,21 +107,21 @@ const ImageCardPopovers = PatchComponent(
       }
     }
 
-  function maybeRenderWallpaper() {
-    return (
-      <div className="setWallpaper">
-        <a
-          onClick={() => {
-            setWallpaper({ variables: { image_id: props.image.id } });
-          }}
-          target="_blank"
-          className="btn btn-primary minimal"
-        >
-          Wall
-        </a>
-      </div>
-    );
-  }
+    function maybeRenderWallpaper() {
+      return (
+        <div className="setWallpaper">
+          <a
+            onClick={() => {
+              setWallpaper({ variables: { image_id: props.image.id } });
+            }}
+            target="_blank"
+            className="btn btn-primary minimal"
+          >
+            Wall
+          </a>
+        </div>
+      );
+    }
 
     if (
       props.image.tags.length > 0 ||

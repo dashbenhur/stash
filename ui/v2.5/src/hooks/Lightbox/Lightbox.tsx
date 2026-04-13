@@ -186,7 +186,7 @@ export const LightboxComponent: React.FC<IProps> = ({
     setLightboxSettings({ scrollMode: v });
   }
 
-const configuredDelay = config?.interface.imageLightbox.slideshowDelay
+  const configuredDelay = config?.interface.imageLightbox.slideshowDelay
     ? config.interface.imageLightbox.slideshowDelay * SECONDS_TO_MS
     : undefined;
 
@@ -964,6 +964,7 @@ const configuredDelay = config?.interface.imageLightbox.slideshowDelay
                   />
                   <a
                     onClick={() => {
+                      if (currentImage?.id === undefined) return;
                       setWallpaper({
                         variables: { image_id: currentImage.id },
                       });
